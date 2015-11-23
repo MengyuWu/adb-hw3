@@ -62,13 +62,15 @@ public class Transaction {
 	     }
 		 
 		
-		 Item userTypeItem=new UserTypeItem(usertype);
-		 addToSingleItemSetMap(itemSetMap,userTypeItem);
+		 //Item userTypeItem=new UserTypeItem(usertype);
+		 //addToSingleItemSetMap(itemSetMap,userTypeItem);
 		 
 		 Item tripDurationItem=new TripDurationItem(tripduration);
 		 addToSingleItemSetMap(itemSetMap,tripDurationItem);
 		 
-		 Titemset.items.add(userTypeItem);
+		 //userType is not that intersting, just ignore it
+		 //Titemset.items.add(userTypeItem);
+		 
 		 Titemset.items.add(tripDurationItem);
 		 
 		 //System.out.println("tripDuration:"+ (tripDurationItem).itemName);

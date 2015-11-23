@@ -19,8 +19,8 @@ public class AprioriLargeSets {
 	
 	public static Set<Item> firstItemSet=new TreeSet<Item>();
 	
-	public static double MIN_SUP=0.2;
-	public static double MIN_CONF=0.5;
+	public static double MIN_SUP=0.1;
+	public static double MIN_CONF=0.6;
 	
 	public static void createLargeItemSetK(List<Set<ItemSet>> largeSets, double minSup, double minConf, int totalT){
 		int k=largeSets.size(); 
@@ -310,9 +310,9 @@ public class AprioriLargeSets {
 	
 	public static void main(String[] args) throws IOException {
 	
-		String filename="test.csv";
-		double minSup=0.2;
-		double minConf=0.5;
+		String filename="201501-citibike-tripdata.csv";
+		double minSup=0.1;
+		double minConf=0.6;
 		
 		FileProcess.readFile(filename,Transaction.TransactionsSet);
 		

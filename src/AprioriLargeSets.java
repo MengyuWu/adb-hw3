@@ -310,7 +310,7 @@ public class AprioriLargeSets {
 	
 	public static void main(String[] args) throws IOException {
 	
-		String filename="201501-citibike-tripdata.csv";
+		String filename=args[0];
 		double minSup=0.1;
 		double minConf=0.6;
 		

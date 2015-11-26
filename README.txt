@@ -52,6 +52,19 @@ c)
 4) A clear description of how to run your program (note that your project must
 compile/run under Linux in your CS account) 
 
+    1) ant clean 
+    2) ant
+    If you receive something similar to the following error:
+        [javac] javac: invalid target release: 1.7
+        Please do the following:
+        1) In Build.xml, update the following two lines to reflect the
+        version of Java that you are using:
+            <property name="target" value="1.6"/>
+                <property name="source" value="1.6"/>
+         2) In Build.xml, if fork="yes" in the line below, change fork="no"
+            <java classname="main.bingRun" failonerror="true" fork="no">
+    3) ant AprioriLargeSets 201501-citibike-tripdata.csv
+
 5) A clear description of the internal design of your project; in particular,
 if you decided to implement variation(s) of the original a-priori algorithm
 (see above), you must explain precisely what variation(s) you have implemented

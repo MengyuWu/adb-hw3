@@ -23,7 +23,7 @@ public class Transaction {
 	 int TID;
 	 ItemSet Titemset;
 	 
-	 
+	 // create a new transaction object
 	 public Transaction(int tripduration, int startStationId,
 				String startStationName, int endStationId, String endStationName,
 				String usertype, int birthYear, int gender, int tID) {
@@ -43,10 +43,9 @@ public class Transaction {
 			
 		}
 
-	
+	 // we ignored userType because it did not produce interesting results
 	 public void createItemSet(){
-		 
-		 
+		 // if gender is known, create a new gender item
 		 if(gender!=0){
 			 Item genderItem=new GenderItem(gender); 
 			 Titemset.items.add(genderItem);
@@ -54,29 +53,21 @@ public class Transaction {
 			 
 		 }
 		 
+		 // if birth year is known, create a new birthYear item
 	     if(birthYear!=0){
 	    	 Item ageItem=new AgeItem(birthYear);
 	    	 Titemset.items.add(ageItem);
-	    	 //System.out.println("age:"+ (ageItem).itemName); 
 	    	 addToSingleItemSetMap(itemSetMap,ageItem);
 	     }
-		 
-		
-		 //Item userTypeItem=new UserTypeItem(usertype);
-		 //addToSingleItemSetMap(itemSetMap,userTypeItem);
 		 
 		 Item tripDurationItem=new TripDurationItem(tripduration);
 		 addToSingleItemSetMap(itemSetMap,tripDurationItem);
 		 
-		 //userType is not that intersting, just ignore it
-		 //Titemset.items.add(userTypeItem);
-		 
 		 Titemset.items.add(tripDurationItem);
-		 
-		 //System.out.println("tripDuration:"+ (tripDurationItem).itemName);
-	
 	 }
 	 
+	 /* store a count of the number of occurrences of each item, where the count of an item
+	 	is the number of transactions that it appears in in the dataset */
 	 public void addToSingleItemSetMap(HashMap<ItemSet, Integer> itemSetMap, Item item){
 		 
 		 ItemSet is=new ItemSet();

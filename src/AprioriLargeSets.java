@@ -309,7 +309,7 @@ public class AprioriLargeSets {
 	
 	
 	public static void main(String[] args) throws IOException {
-	
+		// input validation
 		String filename=args[0];
 		double minSup=0;
 		double minConf=0;
@@ -325,11 +325,12 @@ public class AprioriLargeSets {
 			System.out.println("min_sup and/or min_conf beyond accepted range (between 0-1)");
 			System.exit(1);
 		}
-
+		/* parse file record by record, create Transaction objects for each record and add
+		   them to itemset */
 		FileProcess.readFile(filename,Transaction.TransactionsSet);
 		
-		
-		//Find large 1-itemsets
+		// General Apriori Algorithm Implementation
+		// Find large 1-itemsets
 		Set<ItemSet> keys=Transaction.itemSetMap.keySet();
 		
 		List<Set<ItemSet>> largeSets=new ArrayList<Set<ItemSet>>();
@@ -339,7 +340,7 @@ public class AprioriLargeSets {
 		Set<ItemSet> L1=new HashSet<ItemSet>();
 		for(ItemSet key:keys){
 			int count=Transaction.itemSetMap.get(key);
-		
+			// check if the count of the item exceeds the min support
 			if(count>=minSup*totalTransactions){
 				//add the item set to the first large item sets
 				

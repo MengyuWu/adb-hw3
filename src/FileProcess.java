@@ -16,6 +16,19 @@ import java.util.TreeSet;
 
 
 public class FileProcess {
+	/* parse the input .csv file, according to the columns in the schema below:
+    	Trip Duration (seconds)
+    	Start Time and Date
+    	Stop Time and Date
+    	Start Station Name
+    	End Station Name
+    	Station ID
+    	Station Lat/Long
+    	Bike ID
+    	User Type
+    	Gender
+    	Year of Birth
+	*/
 	public static void readFile(String filename, HashSet<Transaction> hs) throws IOException{
 		BufferedReader br=new BufferedReader(new FileReader(filename));
 		//skip the headerLine
@@ -28,7 +41,6 @@ public class FileProcess {
 		while(line!=null){
 			//process
 			line=line.replace("\"", "");
-			//System.out.println("line "+i+": "+line);
 			String[] args=line.split(",");
 			int tripduration=Integer.parseInt(args[0]);
 		    int startStationId=Integer.parseInt(args[3]);
@@ -43,21 +55,13 @@ public class FileProcess {
 			}
 			
 			int gender=Integer.parseInt(args[14]);
-			
-			int tID=i;
-			
-			//TODO: Should we ignore the row that has unkown attributes?
-//			if(birthYear!=0 && gender!=0){
-//				
-//			}
-			
+			int tID=i; // primary key for transaction
 			
 			Transaction t=new Transaction(tripduration, startStationId,
 					startStationName,  endStationId,  endStationName,
 					 usertype, birthYear,gender, tID);
 			
-			//hm.put(tID, t);
-			hs.add(t);
+			hs.add(t); // add the transaction to the hashset
 			
 			i++;
 			
@@ -81,7 +85,6 @@ public class FileProcess {
 	
 	
 	public static void main(String[] args) throws IOException{
-		
 		HashMap<ItemSet,Integer> hm=new HashMap<ItemSet,Integer>();
 		ItemSet is=new ItemSet();
 		Item it=new AgeItem(1990);

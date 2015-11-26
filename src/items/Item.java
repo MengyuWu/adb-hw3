@@ -24,6 +24,4 @@ public abstract class Item implements Comparable {
 		String objName=((Item)o).itemName;
 	    return this.itemName.equals(objName);
 	}
-	
-	
 }

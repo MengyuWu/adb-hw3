@@ -57,14 +57,14 @@ September as it is one of the hottest months in the year, and this month produce
 highest volume of data within the past year, implying that the most amount of people use
 citibike in September, or users tend to bike more in this month compared to other months.
 
-c) Our dataset is interesting, because it allows us to get a sense of the exercise habits
-of a large group of New Yorkers and obtain information about how people's exercise
-patterns (duration, frequency) differ across gender and age. The results of this 
-investigation could be used to determine how to increase participation in the citibike 
-program for target audiences, such as college students or women, and allow us to understand
-which demographics may be in danger of underexercising (provided that they do not participate
-in additional exercise programs such as gyms, or partake in any other form of exercise 
-outside of biking).
+c) Our dataset is interesting, because it allows us to get a sense of the exercise
+habits of a large group of New Yorkers and obtain information about how people's
+exercise patterns (duration, frequency) differ across gender and age. The results
+of this investigation could be used to determine how to increase participation
+in the citibike program for target audiences, such as college students or women,
+and allow us to understand which demographics may be in danger of underexercising
+(provided that they do not participate in additional exercise programs such as gyms,
+or partake in any other form of exercise outside of biking).
 
 4) A clear description of how to run your program (note that your project must
 compile/run under Linux in your CS account) 

@@ -358,6 +358,7 @@ public class AprioriLargeSets {
 		
 		largeSets.add(L1);
 		
+		// remaining part of Apriori Algorithm, from 2-itemsets to k-itemsets
 		createLargeItemSetK(largeSets,minSup,minConf,totalTransactions);
 		
 		//largeSets contains largest k-itemset

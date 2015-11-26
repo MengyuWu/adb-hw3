@@ -17,27 +17,28 @@ import java.util.TreeSet;
 
 public class AprioriLargeSets {
 	
+	// includes the set of items of size 1 that pass the min support threshold (frequent items)
 	public static Set<Item> firstItemSet=new TreeSet<Item>();
 	
 	public static double MIN_SUP=0.1;
 	public static double MIN_CONF=0.6;
 	
+	// rest of Apriori Algorithm
 	public static void createLargeItemSetK(List<Set<ItemSet>> largeSets, double minSup, double minConf, int totalT){
 		int k=largeSets.size(); 
-		Set<ItemSet> Lprev=largeSets.get(k-1);
+		Set<ItemSet> Lprev=largeSets.get(k-1); // get the set of all large (k-1)-itemsets
 		
-		//add k item set to largeSets until the k-itemset  is empty
+		// add k item set to largeSets until the k-itemset is empty
 		while(Lprev!=null){
 			System.out.println("In level:"+(largeSets.size()+1));
-			Set<ItemSet> Lnext=new HashSet<ItemSet>();
+			Set<ItemSet> Lnext=new HashSet<ItemSet>(); // this is L_k, start with it empty
 			
 			Set<ItemSet> Cknext=aprioriGen(Lprev,firstItemSet);
 			
-			//count the frequent of itemset, from each transaction
-			//if the transaction contains that itemset, count++
+			// count the frequency of itemset from each transaction
+			// if the transaction contains that itemset, count++
 			HashMap<ItemSet,Integer> hm=new HashMap<ItemSet,Integer>();
 			for(Transaction t: Transaction.TransactionsSet){
-				
 				for(ItemSet itemSet:Cknext){
 					if(belongTo(itemSet,t)){
 						if(hm.containsKey(itemSet)){
@@ -51,7 +52,8 @@ public class AprioriLargeSets {
 			}
 			
 			Set<ItemSet> itmeSets=hm.keySet();
-			for(ItemSet itemset: itmeSets){
+			// if the itemset's support > the minimum support threshold, add it to the k-itemset
+			for(ItemSet itemset: itmeSets){ 
 				if(hm.get(itemset)>=minSup*totalT){
 					
 					//test
@@ -67,11 +69,12 @@ public class AprioriLargeSets {
 				}
 			}
 			
-			
+			// algorithm termination condition: L_k = empty set
 			if(Lnext.size()==0){
 				break;
 			}
 			
+			// union L_k with what we have so far
 			largeSets.add(Lnext);
 			Lprev=Lnext;
 			
@@ -93,13 +96,15 @@ public class AprioriLargeSets {
 		return true;
 	}
 	
-	
-	
-	
+	/* 
+	   Apriori Candidate Generation, which extends the frequent subsets one item
+	   at a time; this function takes as argument L_k-1, the set of all large
+	   (k-1)-itemsets and returns the superset of the set of all large k-itemsets.
+	*/
 	public static Set<ItemSet> aprioriGen(Set<ItemSet> prev, Set<Item> first){
 		Set<ItemSet> next=new HashSet<ItemSet>();
 		
-		//add all possible itemSet
+		// join step, add all possible itemSet
 		for(ItemSet set:prev){
 			Set<Item> items=set.items;
 			for(Item item:first){
@@ -107,6 +112,7 @@ public class AprioriLargeSets {
 				nItemSet.items.addAll(items);
 				nItemSet.items.add(item);
 				
+				// Insert into C_k 
 				if(nItemSet.items.size()==(set.items.size()+1)){
 					next.add(nItemSet);
 				}
@@ -114,18 +120,7 @@ public class AprioriLargeSets {
 			}
 		}
 		
-		
-		//TEST NEXT
-//		System.out.println("NEXT SET");
-//		for(ItemSet set:next){
-//			Set<Item> items=set.items;
-//			for(Item item:items){
-//				System.out.print(item.itemName+" ");
-//			}
-//			System.out.println();
-//		}
-		
-		// prune step, delete all itemsets (k-1) subset of c is not in prev
+		// prune step, delete all itemsets where some (k-1) subset of c is not in prev (L_k-1)
 		Iterator<ItemSet> itr=next.iterator();
 		while(itr.hasNext()){
 			ItemSet iSet=itr.next();
@@ -133,8 +128,7 @@ public class AprioriLargeSets {
 				itr.remove();
 			}		
 		}
-		
-		return next;	
+		return next;
 	}
 
 	public static List<Set<Item>> getSubSet(ItemSet iSet){
@@ -150,9 +144,6 @@ public class AprioriLargeSets {
 	
 		return res;
 	}
-	
-	
-	
 	
 	public static boolean subsetNotIn(ItemSet iSet, Set<ItemSet> prev){
 		List<Set<Item>> subsets=getSubSet(iSet);
@@ -209,12 +200,7 @@ public class AprioriLargeSets {
 				//create all possible rules, split the item into 2 parts LHS AND RHS
 				Set<Item> items=is.items;
 				List<Set<Item>> subsetlists=subsets(items);
-				//test
-				//System.out.println("--------subset size:"+items.size());
 				for(Set<Item> s: subsetlists){
-					
-					//System.out.println(setItemToString(s));
-					
 					if(s.size()>=1 && s.size()<items.size()){
 						Set<Item> LHS=s;
 						Set<Item> RHS=new TreeSet<Item>(items);
@@ -229,9 +215,9 @@ public class AprioriLargeSets {
 						
 						double lAndrSup=supportTable.get(landrStr);
 						double conf=lAndrSup/lhssup;
-						//System.out.println(lhsStr+"=>"+rhsStr+"lsup "+lhssup+" rsup"+rhssup+" "+lAndrSup+ "conf:"+conf);
-						
-						if(conf>MIN_CONF){
+
+						// output only the rules that are greater than or equal to the min_conf						
+						if(conf>=MIN_CONF){
 							String ruleStr=lhsStr+"=>"+rhsStr;
 							Rule r=new Rule(ruleStr,conf);
 							ts.add(r);
@@ -247,9 +233,6 @@ public class AprioriLargeSets {
 		}
 	
 	}
-	
-	
-	
 	
 	public static String setItemToString(Set<Item> set){
 		String itemsStr="";
@@ -325,6 +308,10 @@ public class AprioriLargeSets {
 			System.out.println("min_sup and/or min_conf beyond accepted range (between 0-1)");
 			System.exit(1);
 		}
+
+		MIN_SUP = minSup;
+		MIN_CONF = minConf;
+
 		/* parse file record by record, create Transaction objects for each record and add
 		   them to itemset */
 		FileProcess.readFile(filename,Transaction.TransactionsSet);

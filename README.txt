@@ -63,7 +63,8 @@ compile/run under Linux in your CS account)
                 <property name="source" value="1.6"/>
          2) In Build.xml, if fork="yes" in the line below, change fork="no"
             <java classname="main.bingRun" failonerror="true" fork="no">
-    3) ant AprioriLargeSets 201501-citibike-tripdata.csv
+    3) ant AprioriLargeSets -Dargs='<file_name.csv> <min_sup> <min_conf>'
+	ex. ant AprioriLargeSets -Dargs='201501-citibike-tripdata.csv 0.5 0.5'
 
 5) A clear description of the internal design of your project; in particular,
 if you decided to implement variation(s) of the original a-priori algorithm

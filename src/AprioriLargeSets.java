@@ -311,9 +311,21 @@ public class AprioriLargeSets {
 	public static void main(String[] args) throws IOException {
 	
 		String filename=args[0];
-		double minSup=0.1;
-		double minConf=0.6;
-		
+		double minSup=0;
+		double minConf=0;
+		try {
+			minSup=Double.parseDouble(args[1]);
+			minConf=Double.parseDouble(args[2]);
+		} catch (NumberFormatException e) {
+			System.out.println("min_sup and min_conf should be doubles");
+			System.exit(1);
+		}
+
+		if (minSup >= 1 || minSup <= 0 || minConf >=1 || minConf <= 0) {
+			System.out.println("min_sup and/or min_conf beyond accepted range (between 0-1)");
+			System.exit(1);
+		}
+
 		FileProcess.readFile(filename,Transaction.TransactionsSet);
 		
 		

@@ -74,14 +74,15 @@ https://drive.google.com/a/columbia.edu/file/d/0B-F5_I2j_YyeamtPZ3ZtcTZmWjQ/view
 
 We will also include this file in our submission, in case the Google Drive link does not work.
 
-c) Our dataset is interesting, because it allows us to get a sense of the exercise habits
-of a large group of New Yorkers and obtain information about how people's exercise
-patterns (duration, frequency) differ across several key attributes: time of year 
-(particular month, season), gender, and age. The results of this investigation could 
-be used to determine how to increase participation in the citibike program for target
-audiences, such as college students or women, and allow us to understand which demographics
-may be in danger of underexercising (provided that they do not participate in additional 
-exercise programs such as gyms, or partake in any other form of exercise outside of biking).
+c) Our dataset is interesting, because it allows us to get a sense of the exercise 
+habits of a large group of New Yorkers and obtain information about how people's
+exercise patterns (duration, frequency) differ across several key attributes: 
+time of year (particular month, season), gender, and age. The results of this 
+investigation could be used to determine how to increase participation in the
+citibike program for target audiences, such as college students or women, and
+allow us to understand which demographics may be in danger of underexercising
+(provided that they do not participate in additional exercise programs such as
+gyms, or partake in any other form of exercise outside of biking).
 
 4) A clear description of how to run your program (note that your project must
 compile/run under Linux in your CS account) 

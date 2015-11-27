@@ -218,7 +218,7 @@ public class AprioriLargeSets {
 
 						// output only the rules that are greater than or equal to the min_conf						
 						if(conf>=MIN_CONF){
-							String ruleStr=lhsStr+" =>"+rhsStr;
+							String ruleStr=lhsStr+" => "+rhsStr;
 							Rule r=new Rule(ruleStr,conf);
 							ts.add(r);
 							hm.put(ruleStr, lAndrSup);

@@ -4,6 +4,7 @@ import items.ItemSet;
 import items.Rule;
 
 import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -71,16 +72,21 @@ public class FileProcess {
 	}
 	
 	public static void writeSupportConfToFile(TreeSet<ItemSet> tsup, TreeSet<Rule> tconf, HashMap<String, Double> ruleSupportTable){
-		
+		PrintWriter writer = new PrintWriter("output.txt", "UTF-8");
 		System.out.println("==Frequent Itemsets (min_sup="+(int)(AprioriLargeSets.MIN_SUP*100)+"%)");
+		writer.println("==Frequent Itemsets (min_sup="+(int)(AprioriLargeSets.MIN_SUP*100)+"%)");
 		for(ItemSet key:tsup){
 			System.out.println(key.getItemsString()+", "+(int)(key.support*100)+"%");
+			writer.println(key.getItemsString()+", "+(int)(key.support*100)+"%");
 		}
+		writer.println();
 		System.out.println("==High-confidence association rules (min_conf="+(int)(AprioriLargeSets.MIN_CONF*100)+"%)");
+		writer.println("==High-confidence association rules (min_conf="+(int)(AprioriLargeSets.MIN_CONF*100)+"%)");
 		for(Rule r:tconf){
-			System.out.println(r.rule+"(Conf: "+(int)(r.conf*100)+"%"+",Supp: "+(int)(ruleSupportTable.get(r.rule)*100)+"%)");
+			System.out.println(r.rule+"(Conf: "+(int)(r.conf*100)+"%"+", Supp: "+(int)(ruleSupportTable.get(r.rule)*100)+"%)");
+			writer.println(r.rule+"(Conf: "+(int)(r.conf*100)+"%"+", Supp: "+(int)(ruleSupportTable.get(r.rule)*100)+"%)");
 		}
-		
+		writer.close();
 	}
 	
 	

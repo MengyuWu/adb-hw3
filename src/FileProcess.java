@@ -71,8 +71,8 @@ public class FileProcess {
 		
 	}
 	
-	public static void writeSupportConfToFile(TreeSet<ItemSet> tsup, TreeSet<Rule> tconf, HashMap<String, Double> ruleSupportTable){
-		PrintWriter writer = new PrintWriter("output.txt", "UTF-8");
+	public static void writeSupportConfToFile(TreeSet<ItemSet> tsup, TreeSet<Rule> tconf, HashMap<String, Double> ruleSupportTable) throws FileNotFoundException {
+		PrintWriter writer = new PrintWriter("output.txt");
 		System.out.println("==Frequent Itemsets (min_sup="+(int)(AprioriLargeSets.MIN_SUP*100)+"%)");
 		writer.println("==Frequent Itemsets (min_sup="+(int)(AprioriLargeSets.MIN_SUP*100)+"%)");
 		for(ItemSet key:tsup){

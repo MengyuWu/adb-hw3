@@ -74,11 +74,11 @@ public class FileProcess {
 		
 		System.out.println("==Frequent Itemsets (min_sup="+(int)(AprioriLargeSets.MIN_SUP*100)+"%)");
 		for(ItemSet key:tsup){
-			System.out.println(key.getItemsString()+","+(int)(key.support*100)+"%");
+			System.out.println(key.getItemsString()+", "+(int)(key.support*100)+"%");
 		}
 		System.out.println("==High-confidence association rules (min_conf="+(int)(AprioriLargeSets.MIN_CONF*100)+"%)");
 		for(Rule r:tconf){
-			System.out.println(r.rule+"(Conf"+(int)(r.conf*100)+"%"+",Supp:"+(int)(ruleSupportTable.get(r.rule)*100)+"%)");
+			System.out.println(r.rule+"(Conf: "+(int)(r.conf*100)+"%"+",Supp: "+(int)(ruleSupportTable.get(r.rule)*100)+"%)");
 		}
 		
 	}

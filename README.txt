@@ -3,6 +3,7 @@ Mengyu Wu: mw2907  Melanie Hsu: mlh2197
 
 2) A list of all files that you are submitting
 build.xml
+201506-citibike-tripdata.csv
 
 src:
 AprioriLargeSets.java
@@ -44,18 +45,16 @@ Member)
     Gender (Zero=unknown; 1=male; 2=female)
     Year of Birth
 
-b) We used a year's worth of citibike data, ranging from November 2014 to October 2015
-(because the November and December 2015 datasets are not yet published, we used the 
-Nov/Dec ones from the year before). 
+b) We ended up using a single .csv file, as attempting to upload or unzip more than one of
+these files to .csv has consistently resulted in connection and write failures. We chose
+June as it is one of the hottest months in the year, where people are more likely to exercise.
+This is supported by the fact that the June dataset in size than all of the winter and spring
+datasets, with the exception of May. We did not use July, August, or September because the 
+data sizes were so large, they produced an overhead limit exceeded error.
 
 Go to http://www.citibikenyc.com/system-data and download the following file:
-201509-citibike-tripdata.csv
+201506-citibike-tripdata.csv
 
-We ended up using a single .csv file, as attempting to upload or unzip more than one of
-these files to .csv has consistently resulted in connection and write failures. We chose
-September as it is one of the hottest months in the year, and this month produced the 
-highest volume of data within the past year, implying that the most amount of people use
-citibike in September, or users tend to bike more in this month compared to other months.
 
 c) Our dataset is interesting, because it allows us to get a sense of the exercise
 habits of a large group of New Yorkers and obtain information about how people's

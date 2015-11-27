@@ -3,6 +3,7 @@ Mengyu Wu: mw2907  Melanie Hsu: mlh2197
 
 2) A list of all files that you are submitting
 build.xml
+output.txt
 201506-citibike-tripdata.csv
 
 src:
@@ -162,6 +163,46 @@ trips of 0-9 minutes in length most frequently, followed by men taking
 trips of 10-19 minutes in length. However, there aren't any frequent
 itemsets associating age or trip length with women, probably because
 there aren't many women represented in this dataset.
+
+We chose a minimum confidence of 50%, where confidence indicates the 
+ratio of how many instances satisfy the rule, to the number of 
+instances that satisfy the LHS. Among the high-confidence association
+rules, there are five rules with a high confidence (let's say that
+high confidence = 72% or higher):
+     [age40] => [gender1](Conf: 80%, Supp: 15%)
+     [age30,tripMin0] => [gender1](Conf: 79%, Supp: 11%)
+     [tripMin0] => [gender1](Conf: 76%, Supp: 35%)
+     [age30] => [gender1](Conf: 76%, Supp: 22%)
+     [age20] => [gender1](Conf: 72%, Supp: 14%)
+     
+These rules say:
+80% of the time, if the citibike user is in their 40s, they are male
+79% of the time, if the citibike user is in their 30s, and the trip duration
+is between 0-9 minutes, the user is male
+76% of the time, if the trip duration is between 0-9 minutes, then the user is male
+76% of the time, if the citibike user is in their 30s, they are male
+72% of the time, if the citibike user is in their 20s, they are male
+
+These rules are unsurprising, since the majority of citibike users are male, 
+and the proportion of female and unknown gender users are quite low, so no 
+frequent itemsets could be generated involving female users. Even if the dataset
+were expanded to accommodate more months, the proportion of female users would
+probably be similar. Thus, we can say that the most frequent users of the 
+citibike, at least in the month of June, are men in their 20s-40s. 
+
+These results are consistent with previous studies and articles noting a huge
+gender gap in citibike users: 
+http://nymag.com/scienceofus/2015/07/why-arent-more-women-riding-citi-bikes.html
+http://nypost.com/2014/05/09/majority-of-citi-bike-users-are-men-study/
+
+These articles cite safety and lack of family-friendliness (no seats for children)
+as major reasons why women are less inclined to bike in NYC. If the datasets
+were expanded to take time of day into account, the gender disparity would probably
+be even more marked during certain times of the day. This suggests that citibike
+is not a popular exercise and/or transportation option among people of all age ranges
+and demographics, and that in order to cater to women and families, they would
+have to make some significant changes, such as adding additional seats for children
+and taking more measures to increase satefy for cyclists in the city.
 
 mlh2197@athens:~/adb-hw3$ ant AprioriLargeSets -Dargs='201506-citibike-tripdata.csv 0.1 0.50'
 Buildfile: /home/mlh2197/adb-hw3/build.xml

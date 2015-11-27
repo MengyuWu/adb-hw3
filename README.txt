@@ -142,4 +142,81 @@ We did not implement any variations of the original a-priori algorithm.
 min_sup, min_conf combination that produces interesting results). Briefly
 explain why the results are interesting.
 
+Here is an example run with min confidence = 50%, and min support = 10%. 
+We picked a min support, or cover of 10%, which represents the number of
+transactions/instances that satisfy the rule. 
+
+From these results, we can glean the following:
+2/3 of the citibikers in June were male ([gender1], 66%), 20% were female 
+([gender2], 20%), and the rest are unknown. The most frequent trip duration 
+([tripMin0], 45%) is a trip lasting between 0-9 minutes, followed by trip 
+durations lasting between 10-19 minutes ([tripMin10], 34%), suggesting at
+a very short exercise time. It seems that users tend to use citibike more
+for transportation purposes, than for purely exercise purposes, since a
+standard workout is more likely to be in the 20-40 minute range.
+
+The most frequent age brackets are people in their 20s and 30s,
+[age30], 29% and [age20], 20%, followed closely by people in their 40s
+[age40], 18%. There seem to be associations between men taking 
+trips of 0-9 minutes in length most frequently, followed by men taking
+trips of 10-19 minutes in length. However, there aren't any frequent
+itemsets associating age or trip length with women, probably because
+there aren't many women represented in this dataset.
+
+mlh2197@athens:~/adb-hw3$ ant AprioriLargeSets -Dargs='201506-citibike-tripdata.csv 0.1 0.50'
+Buildfile: /home/mlh2197/adb-hw3/build.xml
+
+AprioriLargeSets:
+     [java] age50  count:117335
+     [java] age40  count:177630
+     [java] tripMin0  count:432141
+     [java] tripMin20  count:122137
+     [java] age20  count:193734
+     [java] tripMin10  count:320718
+     [java] gender2  count:188655
+     [java] gender1  count:621591
+     [java] age30  count:275306
+     [java] In level:2
+     [java] age20 gender1 count140117
+     [java] age30 tripMin10 count94174
+     [java] age30 tripMin0 count140358
+     [java] gender1 tripMin0 count329498
+     [java] age20 tripMin0 count99242
+     [java] age40 gender1 count143326
+     [java] gender1 tripMin10 count205935
+     [java] age30 gender1 count209793
+     [java] In level:3
+     [java] age30 gender1 tripMin0 count111932
+     [java] In level:4
+     [java] ==Frequent Itemsets (min_sup=10%)
+     [java] [gender1], 66%
+     [java] [tripMin0], 45%
+     [java] [gender1,tripMin0], 35%
+     [java] [tripMin10], 34%
+     [java] [age30], 29%
+     [java] [age30,gender1], 22%
+     [java] [gender1,tripMin10], 21%
+     [java] [age20], 20%
+     [java] [gender2], 20%
+     [java] [age40], 18%
+     [java] [age40,gender1], 15%
+     [java] [age30,tripMin0], 14%
+     [java] [age20,gender1], 14%
+     [java] [tripMin20], 12%
+     [java] [age50], 12%
+     [java] [age30,gender1,tripMin0], 11%
+     [java] [age20,tripMin0], 10%
+     [java] [age30,tripMin10], 10%
+     [java] ==High-confidence association rules (min_conf=50%)
+     [java] [age40] => [gender1](Conf: 80%, Supp: 15%)
+     [java] [age30,tripMin0] => [gender1](Conf: 79%, Supp: 11%)
+     [java] [tripMin0] => [gender1](Conf: 76%, Supp: 35%)
+     [java] [age30] => [gender1](Conf: 76%, Supp: 22%)
+     [java] [age20] => [gender1](Conf: 72%, Supp: 14%)
+     [java] [tripMin10] => [gender1](Conf: 64%, Supp: 21%)
+     [java] [age30,gender1] => [tripMin0](Conf: 53%, Supp: 11%)
+     [java] [gender1] => [tripMin0](Conf: 53%, Supp: 35%)
+     [java] [age20] => [tripMin0](Conf: 51%, Supp: 10%)
+     [java] [age30] => [tripMin0](Conf: 50%, Supp: 14%)
+
 7) Any additional information that you consider significant

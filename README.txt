@@ -45,12 +45,13 @@ Member)
     Gender (Zero=unknown; 1=male; 2=female)
     Year of Birth
 
-b) We ended up using a single .csv file, as attempting to upload or unzip more than one of
-these files to .csv has consistently resulted in connection and write failures. We chose
-June as it is one of the hottest months in the year, where people are more likely to exercise.
-This is supported by the fact that the June dataset in size than all of the winter and spring
-datasets, with the exception of May. We did not use July, August, or September because the 
-data sizes were so large, they produced an overhead limit exceeded error.
+b) We ended up using a single .csv file, as attempting to upload or unzip more
+than one of these files to .csv has consistently resulted in connection and
+write failures. We chose June as it is one of the hottest months in the year,
+where people are more likely to exercise. This is supported by the fact that
+the June dataset in size than all of the winter and spring datasets, with the
+exception of May. We did not use July, August, or September because the data
+sizes were so large, they produced an overhead limit exceeded error.
 
 Go to http://www.citibikenyc.com/system-data and download the following file:
 201506-citibike-tripdata.csv

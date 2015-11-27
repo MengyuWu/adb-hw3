@@ -3,7 +3,7 @@ Mengyu Wu: mw2907  Melanie Hsu: mlh2197
 
 2) A list of all files that you are submitting
 build.xml
-output.txt
+example-run.txt
 201506-citibike-tripdata.csv
 
 src:

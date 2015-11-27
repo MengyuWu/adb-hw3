@@ -106,6 +106,35 @@ in our project, and AgeItem.java, GenderItem.java, TripDurationItem.java,
 and UserTypeItem.java represent the concepts of the important aspects in 
 the dataset's schema.
 
+After the file is parsed, the AprioriLargeSets class creates a set of 
+large 1-itemsets (firstItemSet), which contains all of the items that 
+exceed the minimum support threshold specified by the user. The count of
+each item was pre-computed during the file parsing process earlier.
+In preparation for the next iteration of the algorithm, the items that 
+pass the support threshold are added to largeSets.
+
+The createLargeItemSetK runs the rest of the Apriori Algorithm (from k=2
+onwards), terminating when L_k is the empty set (we cannot generate any
+item sets of size k). First, the algorithm starts with an empty L_k, aka.
+Lnext, and retrieves the set of all large k-1 itemsets. It then calls the
+aprioriGen method, which generates all sets of large k-itemsets by adding
+one item to the frequent subsets at a time. 
+
+The algorithm then takes a count of the frequency of each item set of size
+k, adding it to the set of k-itemsets if the item set passes the minimum
+support threshold. If there is at least one item set in the set of k-itemsets,
+then the algorithm progresses to the next iteration, incrementing k by 1.
+
+Using the results of this algorithm, the AprioriLargeSets class generates all
+possible rules that contain one item on the RHS, and at least one item on the
+LHS, outputting only the rules that are greater than or equal to the minimum
+confidence - this is the set of high-confidence rules. 
+
+Finally, the FileProcess class outputs these rules to an output.txt file, 
+which includes a list of frequent itemsets (one itemset plus its support)
+and a list of high-confidence association rules, inculding its support and
+confidence.   
+
 We did not implement any variations of the original a-priori algorithm.
 
 6) The command line specification of an interesting sample run (i.e., a
